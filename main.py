@@ -10,6 +10,8 @@ import shutil
 import subprocess
 import random
 from pygame import mixer
+import platform
+import socket
 
 MusicFlag = 0
 print("Waking Up Friday")
@@ -142,8 +144,17 @@ if __name__=='__main__':
             webbrowser.open("https://www.google.nl / maps / place/" + location + "")
         
         elif 'open code' in command:
-            codePath = "addPath"
-            os.startfile(codePath)
+            home = os.path.expanduser('~')
+            home = home.replace("\\",'/')
+            path = 'AppData/Local/Programs'
+            codePath = home + "/" + path + '/'
+            for root,dirs,files in os.walk(codePath):
+                    for file in files:
+                        if file.endswith("Code.exe"):
+                            k = root + "/" + file
+                            os.startfile(k)
+                            break
+
         elif 'play music' in command:
             mixer.init()
             if MusicFlag==0:
