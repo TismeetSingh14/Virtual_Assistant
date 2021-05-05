@@ -27,12 +27,14 @@ import Music
 import ytSearch
 import searchGoogle
 from youtube_search import YoutubeSearch
+import restart
+import hibernate
 
 print("Waking Up Friday")
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
-engine.setProperty('voice',voices[1].id)
+engine.setProperty('voice',voices[0].id)
 newVoiceRate = 150
 engine.setProperty('rate',newVoiceRate)
 def say(text):
@@ -94,9 +96,7 @@ if __name__=='__main__':
             continue
 
         if "good bye" in command or "bye" in command or "stop" in command or "exit" in command:
-            say('Good Bye Sir')
-            say('Have a nice day')
-            print('Good Bye Sir. Have a nice day!!')
+            goodbye.sayBye()
             break
 
         elif 'wikipedia' in command:
@@ -115,7 +115,7 @@ if __name__=='__main__':
             tellTime.sayTime()
 
         elif 'who are you' in command:
-            say("Hello Sir I am Friday Your personal AI Assistant I am here to help you sir You may ask me anything")
+            defineYourself.defineYou()
 
         elif "camera" in command or "take a photo" in command:
             ec.capture(0,"robo camera","img.jpg")

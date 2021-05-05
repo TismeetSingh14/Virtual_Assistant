@@ -12,4 +12,7 @@ def say(text):
     engine.runAndWait()
     
 def defineYou():
-    say("Hello Sir I am Jarvis Your personal AI Assistant I am here to help you sir You may ask me anything")
+    say("Hello Sir I am Friday")
+    say("Your personal AI Assistant")
+    say("I am here to help you sir")
+    say("You may ask me anything")
