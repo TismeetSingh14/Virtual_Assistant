@@ -6,6 +6,7 @@ import speech_recognition as sr
 import random
 import pyttsx3
 import speech_recognition as sr
+import string
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
@@ -25,8 +26,9 @@ def PlayMusic():
     if os.path.exists("Music_Path.txt")==False or os.stat("Music_Path.txt").st_size == 0:
         Music_Path = []
         say("Finding Music Files on your System. First Time takes a few moments")
-        allPaths = ['C:/','D:/','E:/']
+        allPaths = ['%s:' % d for d in string.ascii_uppercase if os.path.exists('%s:' % d)]
         for path in allPaths:
+            path = path + "/"
             for root,dirs,files in os.walk(path):
                 for file in files:
                     path = ""
@@ -56,5 +58,3 @@ def PlayMusic():
             break
         if keyboard.is_pressed('p'):
             mixer.music.pause()
-
-PlayMusic()
