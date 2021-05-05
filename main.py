@@ -8,7 +8,10 @@ import time
 from ecapture import ecapture as ec
 import shutil
 import subprocess
+import random
+from pygame import mixer
 
+MusicFlag = 0
 print("Waking Up Friday")
 
 engine = pyttsx3.init('sapi5')
@@ -16,7 +19,7 @@ voices = engine.getProperty('voices')
 engine.setProperty('voice',voices[0].id)
 newVoiceRate = 150
 engine.setProperty('rate',newVoiceRate)
-
+Music_Path = []
 def say(text):
     engine.say(text)
     engine.runAndWait()
@@ -141,5 +144,22 @@ if __name__=='__main__':
         elif 'open code' in command:
             codePath = "addPath"
             os.startfile(codePath)
+        elif 'play music' in command:
+            mixer.init()
+            if MusicFlag==0:
+                say("Finding Music Files on your System. First Time takes a few moments")
+                for root,dirs,files in os.walk("C:/"):
+                    for file in files:
+                        path = ""
+                        if file.endswith(".mp3"):
+                            path+=(root+ '/' + str(file))
+                            Music_Path.append(path)
+                MusicFlag=1
+            num = int(random.randint(0,len(Music_Path)))
+            mixer.music.load(Music_Path[num])
+            mixer.music.play()
+            command = takeCommand().lower()
+            if 'stop' or 'pause' in command:
+                mixer.music.stop()
 
 time.sleep(4)
