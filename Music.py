@@ -21,29 +21,34 @@ def say(text):
     engine.runAndWait()
     
 def PlayMusic():
-    Music_Path.clear()
-    MusicFlag = 0     
-    PlayMusicSubprocess()
-
-def PlayMusicSubprocess():
     mixer.init()
-    if MusicFlag==0:
+    if os.path.exists("Music_Path.txt")==False or os.stat("Music_Path.txt").st_size == 0:
+        Music_Path = []
         say("Finding Music Files on your System. First Time takes a few moments")
         for root,dirs,files in os.walk("C:/"):
             for file in files:
                 path = ""
                 if file.endswith(".mp3"):
                     path+=(root+ '/' + str(file))
-                    print(path)
                     Music_Path.append(path)
-        MusicFlag=1
-    num = int(random.randint(0,len(Music_Path)))
+        with open("Music_Path.txt","w+") as f:
+            for path in Music_Path:
+                f.write(path+"\n")
+    Music_Path = []
+    with open("Music_Path.txt","r") as f:
+        Music_Path = (f.readlines())
+    Clean_Music_Path = []
+    for ele in Music_Path:
+        Clean_Music_Path.append(ele.strip())
+    num = int(random.randint(0,len(Clean_Music_Path)))
     print(num)
-    mixer.music.load(Music_Path[num])
-    print("Playing {Music_Path[num]}")
+    mixer.music.load(Clean_Music_Path[num])
+    Music_name = (str(Music_Path[num])).split("/")[-1]
+    print("Playing "+ Music_name)
+    say("Playing "+ Music_name)
     mixer.music.play()
     while mixer.music.get_busy():
-        if keyboard.is_pressed('n'):
+        if keyboard.is_pressed('s'):
             mixer.music.stop()
             break
         if keyboard.is_pressed('p'):
