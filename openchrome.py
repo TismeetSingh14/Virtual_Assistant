@@ -1,6 +1,7 @@
 import pyttsx3
 import speech_recognition as sr
-
+import webbrowser
+import time
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
@@ -12,7 +13,7 @@ def say(text):
     engine.say(text)
     engine.runAndWait()
 
-def sayBye():
-    say('Good Bye Sir')
-    say('Have a nice day')
-    print('Good Bye Sir. Have a nice day!!')
+def openSiteChrome():
+    webbrowser.open_new_tab("https://www.google.com")
+    say("Google Chrome is ready")
+    time.sleep(5)
