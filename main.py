@@ -118,7 +118,7 @@ if __name__=='__main__':
 
         elif 'open gmail' in command:
             webbrowser.open_new_tab("gmail.com")
-            say("G Mail is ready")
+            say("GMail is ready")
             time.sleep(5)
 
         elif 'time' in command:
