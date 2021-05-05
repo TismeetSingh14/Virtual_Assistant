@@ -36,6 +36,7 @@ import openWord
 import openSettings
 import openGoogle
 import Weather
+import Date
 
 print("Waking Up Friday")
 
@@ -79,15 +80,12 @@ def greetings(myName):
 
     if timeNow >= 0 and timeNow < 12:
         say("Good Morning sir")
-        say("Welcome Back")
     
     elif timeNow >=12 and timeNow < 16:
         say("Good Afternoon sir")
-        say("Welcome Back")
     
     else:
         say("Good Evening sir")
-        say("Welcome Back")
     
     say("How may I help you")
 
@@ -105,6 +103,9 @@ if __name__=='__main__':
         if "good bye" in command or "bye" in command or "stop" in command or "exit" in command:
             goodbye.sayBye()
             break
+        
+        elif "date" in command:
+            Date.DateTime()
 
         elif 'wikipedia' in command:
             searchWiki.searching(command)

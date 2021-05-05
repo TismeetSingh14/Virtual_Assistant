@@ -49,5 +49,3 @@ def GetWeather():
     say("The current temperature is " + str(x['current']['temp_c']) + "degree celsius")
     say("It will be " + x['current']['condition']['text'] + " today")
     say("The sun will rise at " + x['forecast']['forecastday'][0]['astro']['sunrise'] + " and will set at " + x['forecast']['forecastday'][0]['astro']['sunset'] + "local time")
-
-GetWeather()
