@@ -17,7 +17,7 @@ import defineYourself
 import goodbye
 import LogOff
 import Maps
-import openchrome
+import openChrome
 import openYT
 import openGMail
 import searchWiki
@@ -34,6 +34,8 @@ import openPowerpoint
 import openOneNote
 import openWord
 import openSettings
+import openGoogle
+import Weather
 
 print("Waking Up Friday")
 
@@ -106,12 +108,18 @@ if __name__=='__main__':
 
         elif 'wikipedia' in command:
             searchWiki.searching(command)
+        
+        elif 'search' in command:
+            searchGoogle.searchQuery(command)
 
         elif 'open youtube' in command:
             openYT.openSiteYT()
+        
+        elif 'open chrome' in command:
+            openChrome.openProgram()
 
         elif 'open google' in command:
-            openchrome.openSiteChrome()
+            openGoogle.openSiteChrome()
 
         elif 'open gmail' in command:
             openGMail.openSiteGMail()
@@ -125,11 +133,11 @@ if __name__=='__main__':
         elif "camera" in command or "take a photo" in command:
             ec.capture(0,"robo camera","img.jpg")
         
-        elif 'on youtube' in command:
+        elif 'on youtube' in command or 'from youtube' in command:
             ytSearch.searchingVideo(command)
-
-        elif 'search' in command:
-            searchGoogle.searchQuery(command)
+        
+        elif 'weather' in command:
+            Weather.GetWeather()
 
         elif "restart" in command:
             restart.Logout()

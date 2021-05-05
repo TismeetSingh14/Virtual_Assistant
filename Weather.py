@@ -31,18 +31,23 @@ def takeCommand():
         return "None"
 
     return command
+
 def GetWeather():
     api_key = "b237bbd52a554e65b4b62837202010"
     base_url = "https://api.weatherapi.com/v1/forecast.json"
 
     say("Please Tell City Name")
-    city_name = input()
+    city_name = takeCommand()
     complete_url = base_url + "?key=" + api_key + "&q=" + city_name
     response = requests.get(complete_url)
     x = response.json()
-    print("Getting Weather Details about " + x['location']['name'])
-    print("The current temperature is " + str(x['current']['temp_c']))
+    say("Getting Weather Details about " + x['location']['name'])
+    print("Weather Details about " + x['location']['name'])
+    print("The current temperature is " + str(x['current']['temp_c']) + "\N{DEGREE SIGN}C")
     print("It will be " + x['current']['condition']['text'] + " today")
     print("The sun will rise at " + x['forecast']['forecastday'][0]['astro']['sunrise'] + " and will set at " + x['forecast']['forecastday'][0]['astro']['sunset'])
+    say("The current temperature is " + str(x['current']['temp_c']) + "degree celsius")
+    say("It will be " + x['current']['condition']['text'] + " today")
+    say("The sun will rise at " + x['forecast']['forecastday'][0]['astro']['sunrise'] + " and will set at " + x['forecast']['forecastday'][0]['astro']['sunset'] + "local time")
 
 GetWeather()

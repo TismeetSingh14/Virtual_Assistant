@@ -2,7 +2,6 @@ import pyttsx3
 import speech_recognition as sr
 import webbrowser
 import time
-import os
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
@@ -14,8 +13,7 @@ def say(text):
     engine.say(text)
     engine.runAndWait()
 
-def openProgram():
-    os.startfile('C:\Program Files (x86)\Google\Chrome\Application\chrome.exe')
-    say("Google Chrome is ready")
+def openSiteChrome():
+    webbrowser.open_new_tab("https://www.google.com")
+    say("Google is ready")
     time.sleep(5)
-
