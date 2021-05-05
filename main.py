@@ -29,6 +29,11 @@ import searchGoogle
 from youtube_search import YoutubeSearch
 import restart
 import hibernate
+import openExcel
+import openPowerpoint
+import openOneNote
+import openWord
+import openSettings
 
 print("Waking Up Friday")
 
@@ -138,9 +143,24 @@ if __name__=='__main__':
         elif "where is" in command or "locate" in command:
             Maps.Maps(command)
         
-        # elif 'shutdown' or 'power off' in command:
-        #     say("Shutting Down")
-        #     subprocess.call(["shutdown / s"])
+        elif 'shutdown' in command or 'power off' in command:
+            say("Shutting Down")
+            subprocess.call(["shutdown / s"])
+        
+        elif 'excel' in command:
+            openExcel.openProgram()
+        
+        elif 'powerpoint' in command:
+            openPowerpoint.openProgram()
+        
+        elif 'word' in command:
+            openWord.openProgram()
+        
+        elif 'one note' in command:
+            openOneNote.openProgram()
+        
+        elif 'settings' in command:
+            openSettings.openProgram()
 
         elif 'V S Code' in command or "code" in command:
             VsCode.OpenCode()
