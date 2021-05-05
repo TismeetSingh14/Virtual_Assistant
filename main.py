@@ -93,7 +93,7 @@ if __name__=='__main__':
         if command==0:
             continue
 
-        if "good bye" in command or "bye" in command or "stop" in command:
+        if "good bye" in command or "bye" in command or "stop" in command or "exit" in command:
             say('Good Bye Sir')
             say('Have a nice day')
             print('Good Bye Sir. Have a nice day!!')
