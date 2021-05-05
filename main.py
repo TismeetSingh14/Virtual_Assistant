@@ -12,6 +12,7 @@ import random
 from pygame import mixer
 import platform
 import socket
+import keyboard
 
 MusicFlag = 0
 print("Waking Up Friday")
