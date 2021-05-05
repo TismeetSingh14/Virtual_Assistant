@@ -13,6 +13,17 @@ from pygame import mixer
 import platform
 import socket
 import keyboard
+import defineYourself
+import goodbye
+import LogOff
+import Maps
+import openchrome
+import openYT
+import openGMail
+import searchWiki
+import tellTime
+import VsCode
+import Music
 
 MusicFlag = 0
 print("Waking Up Friday")
@@ -87,7 +98,7 @@ if __name__=='__main__':
             print('Good Bye Sir. Have a nice day!!')
             break
 
-        if 'wikipedia' in command:
+        elif 'wikipedia' in command:
             say('Searching Wikipedia...')
             command =command.replace("wikipedia", "")
             results = wikipedia.summary(command, sentences=5)
@@ -120,7 +131,7 @@ if __name__=='__main__':
         elif "camera" in command or "take a photo" in command:
             ec.capture(0,"robo camera","img.jpg")
 
-        elif 'search'  in command:
+        elif 'search' in command:
             command = command.replace("search", "")
             webbrowser.open_new_tab(command)
             time.sleep(5)

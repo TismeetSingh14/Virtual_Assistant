@@ -1,6 +1,6 @@
 import pyttsx3
 import speech_recognition as sr
-import subprocess
+import webbrowser
 import time
 
 engine = pyttsx3.init('sapi5')
@@ -13,7 +13,7 @@ def say(text):
     engine.say(text)
     engine.runAndWait()
 
-def Logout():
-    say("Make sure all the application are closed before sign-out")
+def searchQuery(command):
+    command = command.replace("search", "")
+    webbrowser.open_new_tab(command)
     time.sleep(5)
-    subprocess.call(["shutdown", "/l"])

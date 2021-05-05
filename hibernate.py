@@ -16,4 +16,4 @@ def say(text):
 def Logout():
     say("Make sure all the application are closed before sign-out")
     time.sleep(5)
-    subprocess.call(["shutdown", "/l"])
+    subprocess.call(["shutdown", "/h"])
