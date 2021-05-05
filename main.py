@@ -25,6 +25,7 @@ import tellTime
 import VsCode
 import Music
 import ytSearch
+import searchGoogle
 from youtube_search import YoutubeSearch
 
 MusicFlag = 0
@@ -32,7 +33,7 @@ print("Waking Up Friday")
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
-engine.setProperty('voice',voices[0].id)
+engine.setProperty('voice',voices[1].id)
 newVoiceRate = 150
 engine.setProperty('rate',newVoiceRate)
 Music_Path = []
@@ -101,87 +102,50 @@ if __name__=='__main__':
             break
 
         elif 'wikipedia' in command:
-            say('Searching Wikipedia...')
-            command =command.replace("wikipedia", "")
-            results = wikipedia.summary(command, sentences=5)
-            say("According to Wikipedia")
-            print(results)
-            say(results)
+            searchWiki.searching(command)
 
         elif 'open youtube' in command:
-            webbrowser.open_new_tab("https://www.youtube.com")
-            say("Youtube is ready")
-            time.sleep(5)
+            openYT.openSiteYT()
 
         elif 'open google' in command:
-            webbrowser.open_new_tab("https://www.google.com")
-            say("Google is ready")
-            time.sleep(5)
+            openchrome.openSiteChrome()
 
         elif 'open gmail' in command:
-            webbrowser.open_new_tab("https://www.gmail.com")
-            say("GMail is ready")
-            time.sleep(5)
+            openGMail.openSiteGMail()
 
         elif 'time' in command:
-            strTime=datetime.datetime.now().strftime("%H:%M:%S")
-            say(f"the time is {strTime}")
+            tellTime.sayTime()
 
         elif 'who are you' in command:
             say("Hello Sir I am Jarvis Your personal AI Assistant I am here to help you sir You may ask me anything")
 
         elif "camera" in command or "take a photo" in command:
             ec.capture(0,"robo camera","img.jpg")
-
-        elif 'search' in command:
-            say("Searching Google...")
-            command = command.replace("search", "")
-            url = "https://www.google.com.tr/search?q={}".format(command)
-            webbrowser.open_new_tab(url)
-            time.sleep(5)
         
         elif 'on youtube' in command:
-            say('Searching YouTube')
-            command = command.replace("search", "")
-            results = YoutubeSearch(command, max_results=5).to_dict()
-            watch_id = results[0]['url_suffix']
-            url = "https://youtube.com" + watch_id
-            webbrowser.open_new_tab(url)
-            time.sleep(5)
+            ytSearch.searchingVideo(command)
+
+        elif 'search' in command:
+            searchGoogle.searchQuery(command)
 
         elif "restart" in command:
-            subprocess.call(["shutdown", "/r"])
+            restart.Logout()
              
         elif "hibernate" in command or "sleep" in command:
-            say("Hibernating")
-            subprocess.call(["shutdown / h"])
+            hibernate.Logout()
  
         elif "log off" in command or "sign out" in command:
-            say("Make sure all the application are closed before sign-out")
-            time.sleep(5)
-            subprocess.call(["shutdown", "/l"])
+            LogOff.Logout()
         
         elif "where is" in command or "locate" in command:
-            command = command.replace("where is", "")
-            location = command
-            say("You asked to Locate" + location)
-            webbrowser.open("https://www.google.nl / maps / place/" + location + "")
+            Maps.Maps(command)
         
-        elif 'shutdown' or 'power off' in command:
-            say("Shutting Down")
-            subprocess.call(["shutdown / s"])
+        # elif 'shutdown' or 'power off' in command:
+        #     say("Shutting Down")
+        #     subprocess.call(["shutdown / s"])
 
-        elif 'open code' in command:
-            home = os.path.expanduser('~')
-            home = home.replace("\\",'/')
-            path = 'AppData/Local/Programs'
-            codePath = home + "/" + path + '/'
-            for root,dirs,files in os.walk(codePath):
-                    for file in files:
-                        if file.endswith("Code.exe"):
-                            k = root + "/" + file
-                            os.startfile(k)
-                            break
+        elif 'V S Code' in command or "code" in command:
+            VsCode.OpenCode()
 
         elif 'play music' in command:
             mixer.init()

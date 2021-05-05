@@ -15,5 +15,5 @@ def say(text):
 
 def openSiteGMail():
     webbrowser.open_new_tab("https://www.gmail.com")
-    say("Google Chrome is ready")
+    say("Gmail is ready")
     time.sleep(5)
