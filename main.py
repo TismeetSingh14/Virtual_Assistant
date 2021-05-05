@@ -113,11 +113,11 @@ if __name__=='__main__':
 
         elif 'open google' in command:
             webbrowser.open_new_tab("https://www.google.com")
-            say("Google Chrome is ready")
+            say("Google is ready")
             time.sleep(5)
 
         elif 'open gmail' in command:
-            webbrowser.open_new_tab("gmail.com")
+            webbrowser.open_new_tab("https://www.gmail.com")
             say("GMail is ready")
             time.sleep(5)
 
@@ -132,8 +132,10 @@ if __name__=='__main__':
             ec.capture(0,"robo camera","img.jpg")
 
         elif 'search' in command:
+            say("Searching Google...")
             command = command.replace("search", "")
-            webbrowser.open_new_tab(command)
+            url = "https://www.google.com.tr/search?q={}".format(command)
+            webbrowser.open_new_tab(url)
             time.sleep(5)
 
         elif "restart" in command:

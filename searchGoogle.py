@@ -14,6 +14,8 @@ def say(text):
     engine.runAndWait()
 
 def searchQuery(command):
+    say("Searching Google...")
     command = command.replace("search", "")
-    webbrowser.open_new_tab(command)
+    url = "https://www.google.com.tr/search?q={}".format(command)
+    webbrowser.open_new_tab(url)
     time.sleep(5)
