@@ -24,7 +24,7 @@ import searchWiki
 import tellTime
 import VsCode
 import Music
-from youtube_search import YoutubeSearch
+import ytSearch
 
 MusicFlag = 0
 print("Waking Up Friday")
@@ -203,6 +203,3 @@ if __name__=='__main__':
                     mixer.music.pause()
 
 time.sleep(4)
-
-results = YoutubeSearch('skyfall by adele', max_results=10).to_dict()
-print(results[0]['url_suffix'])
