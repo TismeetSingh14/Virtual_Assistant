@@ -1,17 +1,12 @@
 import pyttsx3
 import speech_recognition as sr
 import datetime
-import wikipedia
-import webbrowser
 import os
 import time
 from ecapture import ecapture as ec
 import shutil
-import subprocess
 import random
 from pygame import mixer
-import platform
-import socket
 import keyboard
 import defineYourself
 import goodbye
@@ -26,7 +21,6 @@ import VsCode
 import Music
 import ytSearch
 import searchGoogle
-from youtube_search import YoutubeSearch
 import restart
 import hibernate
 import openExcel
@@ -36,6 +30,7 @@ import openWord
 import openSettings
 import openGoogle
 import Weather
+import shutdown
 import Date
 
 print("Waking Up Friday")
@@ -153,8 +148,7 @@ if __name__=='__main__':
             Maps.Maps(command)
         
         elif 'shutdown' in command or 'power off' in command:
-            say("Shutting Down")
-            subprocess.call(["shutdown / s"])
+            shutdown.Logout()
         
         elif 'excel' in command:
             openExcel.openProgram()
