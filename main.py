@@ -25,6 +25,7 @@ import tellTime
 import VsCode
 import Music
 import ytSearch
+from youtube_search import YoutubeSearch
 
 MusicFlag = 0
 print("Waking Up Friday")
@@ -166,6 +167,10 @@ if __name__=='__main__':
             say("You asked to Locate" + location)
             webbrowser.open("https://www.google.nl / maps / place/" + location + "")
         
+        elif 'shutdown' or 'power off' in command:
+            say("Shutting Down")
+            subprocess.call(["shutdown / s"])
+
         elif 'open code' in command:
             home = os.path.expanduser('~')
             home = home.replace("\\",'/')

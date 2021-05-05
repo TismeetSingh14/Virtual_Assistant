@@ -14,6 +14,6 @@ def say(text):
     engine.runAndWait()
 
 def Logout():
-    say("Make sure all the application are closed before sign-out")
+    say("Hibernating")
     time.sleep(5)
     subprocess.call(["shutdown", "/h"])
