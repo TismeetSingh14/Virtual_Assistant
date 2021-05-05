@@ -17,10 +17,12 @@ def say(text):
     engine.say(text)
     engine.runAndWait()
     
-MusicFlag = 0
-Music_Path = []
+def PlayMusic():    
+    MusicFlag = 0
+    Music_Path = []
+    PlayMusicSubprocess()
 
-def PlayMusic():
+def PlayMusicSubprocess():
     mixer.init()
     if MusicFlag==0:
         say("Finding Music Files on your System. First Time takes a few moments")

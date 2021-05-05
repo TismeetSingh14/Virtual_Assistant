@@ -1,6 +1,6 @@
 import pyttsx3
 import speech_recognition as sr
-import webbrowser
+import subprocess
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
@@ -12,8 +12,7 @@ def say(text):
     engine.say(text)
     engine.runAndWait()
 
-def Maps(command):
-    command = command.replace("where is", "")
-    location = command
-    say("You asked to Locate" + location)
-    webbrowser.open("https://www.google.com/maps/place/" + location)
+def Logout():
+    say("Make sure all the application are closed before sign-out")
+    time.sleep(5)
+    subprocess.call(["shutdown", "/l"])
