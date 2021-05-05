@@ -164,13 +164,19 @@ if __name__=='__main__':
                         path = ""
                         if file.endswith(".mp3"):
                             path+=(root+ '/' + str(file))
+                            print(path)
                             Music_Path.append(path)
                 MusicFlag=1
             num = int(random.randint(0,len(Music_Path)))
+            print(num)
             mixer.music.load(Music_Path[num])
+            print("Playing {Music_Path[num]}")
             mixer.music.play()
-            command = takeCommand().lower()
-            if 'stop' or 'pause' in command:
-                mixer.music.stop()
+            while mixer.music.get_busy():
+                if keyboard.is_pressed('n'):
+                    mixer.music.stop()
+                    break
+                if keyboard.is_pressed('p'):
+                    mixer.music.pause()
 
 time.sleep(4)
