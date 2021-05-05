@@ -24,6 +24,7 @@ import searchWiki
 import tellTime
 import VsCode
 import Music
+from youtube_search import YoutubeSearch
 
 MusicFlag = 0
 print("Waking Up Friday")
@@ -137,6 +138,15 @@ if __name__=='__main__':
             url = "https://www.google.com.tr/search?q={}".format(command)
             webbrowser.open_new_tab(url)
             time.sleep(5)
+        
+        elif 'on youtube' in command:
+            say('Searching YouTube')
+            command = command.replace("search", "")
+            results = YoutubeSearch(command, max_results=5).to_dict()
+            watch_id = results[0]['url_suffix']
+            url = "https://youtube.com" + watch_id
+            webbrowser.open_new_tab(url)
+            time.sleep(5)
 
         elif "restart" in command:
             subprocess.call(["shutdown", "/r"])
@@ -193,3 +203,6 @@ if __name__=='__main__':
                     mixer.music.pause()
 
 time.sleep(4)
+
+results = YoutubeSearch('skyfall by adele', max_results=10).to_dict()
+print(results[0]['url_suffix'])
