@@ -25,15 +25,18 @@ def PlayMusic():
     if os.path.exists("Music_Path.txt")==False or os.stat("Music_Path.txt").st_size == 0:
         Music_Path = []
         say("Finding Music Files on your System. First Time takes a few moments")
-        for root,dirs,files in os.walk("C:/"):
-            for file in files:
-                path = ""
-                if file.endswith(".mp3"):
-                    path+=(root+ '/' + str(file))
-                    Music_Path.append(path)
-        with open("Music_Path.txt","w+") as f:
-            for path in Music_Path:
-                f.write(path+"\n")
+        allPaths = ['C:/','D:/','E:/']
+        for path in allPaths:
+            for root,dirs,files in os.walk(path):
+                for file in files:
+                    path = ""
+                    if file.endswith(".mp3"):
+                        path+=(root+ '/' + str(file))
+                        print(path)
+                        Music_Path.append(path)
+            with open("Music_Path.txt","w+") as f:
+                for path in Music_Path:
+                    f.write(path+"\n")
     Music_Path = []
     with open("Music_Path.txt","r") as f:
         Music_Path = (f.readlines())
@@ -53,3 +56,5 @@ def PlayMusic():
             break
         if keyboard.is_pressed('p'):
             mixer.music.pause()
+
+PlayMusic()
