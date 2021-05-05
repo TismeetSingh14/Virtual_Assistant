@@ -13,13 +13,16 @@ engine.setProperty('voice',voices[0].id)
 newVoiceRate = 150
 engine.setProperty('rate',newVoiceRate)
 
+MusicFlag = 0
+Music_Path = []
+
 def say(text):
     engine.say(text)
     engine.runAndWait()
     
-def PlayMusic():    
-    MusicFlag = 0
-    Music_Path = []
+def PlayMusic():
+    Music_Path.clear()
+    MusicFlag = 0     
     PlayMusicSubprocess()
 
 def PlayMusicSubprocess():

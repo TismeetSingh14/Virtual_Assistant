@@ -28,7 +28,6 @@ import ytSearch
 import searchGoogle
 from youtube_search import YoutubeSearch
 
-MusicFlag = 0
 print("Waking Up Friday")
 
 engine = pyttsx3.init('sapi5')
@@ -36,7 +35,6 @@ voices = engine.getProperty('voices')
 engine.setProperty('voice',voices[1].id)
 newVoiceRate = 150
 engine.setProperty('rate',newVoiceRate)
-Music_Path = []
 def say(text):
     engine.say(text)
     engine.runAndWait()
@@ -117,7 +115,7 @@ if __name__=='__main__':
             tellTime.sayTime()
 
         elif 'who are you' in command:
-            say("Hello Sir I am Jarvis Your personal AI Assistant I am here to help you sir You may ask me anything")
+            say("Hello Sir I am Friday Your personal AI Assistant I am here to help you sir You may ask me anything")
 
         elif "camera" in command or "take a photo" in command:
             ec.capture(0,"robo camera","img.jpg")
@@ -147,22 +145,32 @@ if __name__=='__main__':
         elif 'V S Code' in command or "code" in command:
             VsCode.OpenCode()
 
-        elif 'play music' in command:
+        elif 'play music' in command or "music" in command:
             mixer.init()
-            if MusicFlag==0:
+            if os.stat("Music_Path.txt").st_size == 0:
+                Music_Path = []
                 say("Finding Music Files on your System. First Time takes a few moments")
                 for root,dirs,files in os.walk("C:/"):
                     for file in files:
                         path = ""
                         if file.endswith(".mp3"):
                             path+=(root+ '/' + str(file))
-                            print(path)
                             Music_Path.append(path)
-                MusicFlag=1
-            num = int(random.randint(0,len(Music_Path)))
+                with open("Music_Path.txt","w+") as f:
+                    for path in Music_Path:
+                        f.write(path+"\n")
+            Music_Path = []
+            with open("Music_Path.txt","r") as f:
+                Music_Path = (f.readlines())
+            Clean_Music_Path = []
+            for ele in Music_Path:
+                Clean_Music_Path.append(ele.strip())
+            num = int(random.randint(0,len(Clean_Music_Path)))
             print(num)
-            mixer.music.load(Music_Path[num])
-            print("Playing {Music_Path[num]}")
+            mixer.music.load(Clean_Music_Path[num])
+            Music_name = (str(Music_Path[num])).split("/")[-1]
+            print("Playing "+ Music_name)
+            say("Playing "+ Music_name)
             mixer.music.play()
             while mixer.music.get_busy():
                 if keyboard.is_pressed('n'):
