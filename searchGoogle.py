@@ -16,6 +16,6 @@ def say(text):
 def searchQuery(command):
     say("Searching Google...")
     command = command.replace("search", "")
-    url = "https://www.google.com.tr/search?q={}".format(command)
+    url = "https://www.google.com/search?q={}".format(command)
     webbrowser.open_new_tab(url)
     time.sleep(5)
